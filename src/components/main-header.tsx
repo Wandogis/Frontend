@@ -3,16 +3,27 @@ import React, { useState, FormEvent } from "react";
 import styled from "styled-components";
 import { UilSearchAlt } from "@iconscout/react-unicons";
 
-interface SearchData {
-  query: string;
-}
 const HeaderWrapper = styled.div`
+  width: 100%;
+  position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin-left: 100px;
+  margin-top: 40px;
 `;
+
+const LogoWrapper = styled.div`
+  position: absolute;
+  left: 80px;
+`;
+
+const InputBtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
+`;
+
 const SearchButton = styled.button`
-  flex: 1;
   width: 45px;
   height: 45px;
   color: white;
@@ -21,8 +32,10 @@ const SearchButton = styled.button`
   border-radius: 50%;
 `;
 const SearchInput = styled.input`
+  flex: 1;
+  display: flex;
   border: 2px solid ${(props) => props.theme.mainYellow};
-  width: 720px;
+  width: 650px;
   height: 40px;
   margin-right: 15px;
   border-radius: 1rem;
@@ -32,15 +45,10 @@ const SearchInput = styled.input`
   color: black;
   padding-left: 20px;
 `;
-const LogoWrapper = styled.div`
-  margin-right: 100px;
-`;
 
-const InputBtnWrapper = styled.div`
-  display: flex;
-  justify-conent: center;
-  text-align: center;
-`;
+interface SearchData {
+  query: string;
+}
 
 const MainHeader: React.FC = () => {
   const [searchData, setSearchData] = useState<SearchData>({ query: "" });
