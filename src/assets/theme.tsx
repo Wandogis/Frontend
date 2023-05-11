@@ -4,9 +4,9 @@ type Theme = {
 
 const theme: Theme = {
   mainYellow: "#FBC252",
-  pointYellow: "FFB100",
-  mainGreen: "A3BB98",
-  green: "EFEAC1",
+  pointYellow: "#FFB100",
+  mainGreen: "#A3BB98",
+  green: "#EFEAC1",
 };
 
 export default theme;
