@@ -26,6 +26,8 @@ const RankingP = styled.div`
 `;
 
 const RankingText = styled.div`
+  display: flex;
+  align-items: center;
   font-weight: 600;
 `;
 
@@ -42,7 +44,7 @@ const RankingName = styled(RankingText)`
   margin-right: 10px;
   margin-left: 30px;
 `;
-
+const RankingFire = styled(RankingText)``;
 const RankingChallenge = styled(RankingText)`
   margin-left: 10px;
   font-size: 12px;
@@ -93,7 +95,7 @@ const RankingItem: React.FC<{ ranking: Ranking }> = memo(({ ranking }) => (
     <RankingNum>{ranking.id}.</RankingNum>
     {ranking.img}
     <RankingName>{ranking.name}</RankingName>
-    {ranking.fire && <Fire />}
+    <RankingFire>{ranking.fire && <Fire />}</RankingFire>
     <RankingChallenge>{ranking.challenge}개의 챌린지 완료</RankingChallenge>
   </>
 ));
