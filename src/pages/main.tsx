@@ -4,6 +4,7 @@ import theme from "../assets/theme";
 import { ThemeProvider } from "styled-components";
 import MainMenuBar from "../components/main-menu-bar";
 import SlideBook from "../components/main-slide-book";
+import OnChallenge from "../components/ongoing-challenge";
 
 const Main: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const Main: React.FC = () => {
       <MainHeader />
       <MainMenuBar />
       <SlideBook />
+      <OnChallenge />
     </ThemeProvider>
   );
 };

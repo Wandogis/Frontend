@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo, useState, memo } from "react";
+import React, { useMemo, useState, memo } from "react";
 import { ReactComponent as Book1 } from "../assets/book1.svg";
 import { ReactComponent as Book2 } from "../assets/book2.svg";
 import { ReactComponent as Book3 } from "../assets/book3.svg";
 import { styled } from "styled-components";
 import { UilAngleRightB, UilAngleLeftB } from "@iconscout/react-unicons";
-
+// import { UilEllipsisH } from '@iconscout/react-unicons'
 const BookWrapper = styled.div`
   width: 60%;
   height: 350px;
