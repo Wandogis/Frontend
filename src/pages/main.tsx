@@ -1,10 +1,10 @@
-import MainHeader from "../components/main-header";
+import MainHeader from "../components/mainComponent/main-header";
 import theme from "../assets/theme";
 import styled from "styled-components";
 import { ThemeProvider } from "styled-components";
-import MainMenuBar from "../components/main-menu-bar";
-import SlideBook from "../components/main-slide-book";
-import OnChallenge from "../components/ongoing-challenge";
+import MainMenuBar from "../components/mainComponent/main-menu-bar";
+import SlideBook from "../components/mainComponent/main-slide-book";
+import OnChallenge from "../components/mainComponent/ongoing-challenge";
 import { Calender } from "../components/Calendar/calendar-profile";
 import { onGoingBook, ExpectBook } from "../assets/main-challengeList";
 
