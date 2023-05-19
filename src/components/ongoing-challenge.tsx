@@ -1,18 +1,14 @@
-import React, { useState } from "react";
-import { ReactComponent as Book1 } from "../assets/book1.svg";
-import { ReactComponent as Book2 } from "../assets/book2.svg";
-import { ReactComponent as Book3 } from "../assets/book3.svg";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
-
-interface OnBook {
-  id: number;
-  img: JSX.Element;
-  view: number;
-  date: Date;
+import { OnBook } from "../assets/main-challengeList";
+interface OnchallengProps {
+  Booklist: OnBook[];
+  Ongoing: boolean;
 }
 const OnChallengeWrapper = styled.div`
-  margin: 1rem 3rem 0 3rem;
+  margin: 2rem 3rem 0 3rem;
 `;
+
 const OnHeader = styled.div`
   display: flex;
   height: 30px;
@@ -49,52 +45,34 @@ const BookListWrapper = styled.div`
 const BookImgBtn = styled(Onbtn)`
   svg {
     width: 200px;
-    height: 300px;
+    height: 250px;
   }
 `;
 
-const OnChallenge: React.FC = () => {
+const OnChallenge: React.FC<OnchallengProps> = ({ Booklist, Ongoing }) => {
   const [sorting, setSorting] = useState<boolean>(true);
+  const [booklist, setBooklist] = useState<OnBook[]>(Booklist);
+
   const onClick = (Sortby: boolean) => {
     setSorting(Sortby);
   };
-  const onGoingBook: OnBook[] = [
-    {
-      id: 1,
-      img: <Book1 />,
-      view: 134,
-      date: new Date("2023-03-20"),
-    },
-    {
-      id: 2,
-      img: <Book2 />,
-      view: 124,
-      date: new Date("2023-03-12"),
-    },
-    {
-      id: 3,
-      img: <Book3 />,
-      view: 500,
-      date: new Date("2023-03-07"),
-    },
-    {
-      id: 4,
-      img: <Book1 />,
-      view: 321,
-      date: new Date("2023-03-19"),
-    },
-    {
-      id: 5,
-      img: <Book2 />,
-      view: 102,
-      date: new Date("2023-03-11"),
-    },
-  ];
+
+  useEffect(() => {
+    let sortedBooklist: OnBook[];
+    if (sorting) {
+      sortedBooklist = [...Booklist].sort((a, b) => b.view - a.view);
+    } else {
+      sortedBooklist = [...Booklist].sort(
+        (a, b) => b.date.getTime() - a.date.getTime()
+      );
+    }
+    setBooklist(sortedBooklist);
+  }, [sorting, Booklist]);
 
   return (
     <OnChallengeWrapper>
       <OnHeader>
-        <div>진행 중인 챌린지</div>
+        <div>{Ongoing ? "진행 중인 챌린지" : "진행 예정 챌린지"}</div>
         <Onbtn>더보기</Onbtn>
       </OnHeader>
       <BtnWrapper>
@@ -103,7 +81,7 @@ const OnChallenge: React.FC = () => {
         <Onbtn onClick={() => onClick(false)}>최신순</Onbtn>
       </BtnWrapper>
       <BookListWrapper>
-        {onGoingBook.map((itm) => (
+        {booklist.map((itm) => (
           <BookImgBtn key={itm.id}>{itm.img}</BookImgBtn>
         ))}
       </BookListWrapper>
