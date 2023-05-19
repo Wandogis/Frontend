@@ -49,15 +49,16 @@ const DetailCalData = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  height: 50px;
-  padding: 5px 10px 5p 10px;
-  position: absolute;
-  left: 100%;
-  bottom: 50%;
-  z-index: 4;
   background-color: #f0eccf;
   border-radius: 1rem;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  padding: 10px;
+
+  position: absolute;
+  bottom: 110%;
+  z-index: 4;
   pointer-events: none;
 `;
 
