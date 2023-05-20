@@ -37,7 +37,7 @@ const MainMenuBar: React.FC = () => {
   const navigate = useNavigate();
 
   const handleClick = (Link: string) => {
-    navigate(`/${Link}`, { replace: true }); // 이동하고 싶은 경로
+    navigate(`/${Link}`); // 이동하고 싶은 경로
   };
 
   return (
