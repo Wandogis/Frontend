@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { genreList } from "../../assets/book-genre";
-import { MenuDropDown } from "./menu-dropdown";
-import { UilAngleDown, UilTrashAlt } from "@iconscout/react-unicons";
+import { GenderInputs, GenreInputs } from "./dropdown-Inputs";
+
+// Styles
 const RecommendWrapper = styled.div`
   width: 80%;
   margin-top: 1.5rem;
 `;
+
 const RecommendInputWrapper = styled.div`
   display: flex;
   background-color: white;
@@ -15,9 +16,12 @@ const RecommendInputWrapper = styled.div`
   padding: 70px;
 `;
 
-const BookInputDiv = styled.div`
-  height: 80%;
+const InputDiv = styled.div`
+  height: 250px;
   overflow: scroll;
+  border-right: 0.5px solid rgba(0, 0, 0, 0.2);
+
+  padding-right: 20px;
   input {
     border: 1px solid #dee2e6;
     border-radius: 0.5rem;
@@ -29,6 +33,8 @@ const BookInputDiv = styled.div`
     padding-left: 10px;
   }
   button {
+    background-color: #dee2e6;
+    color: #868e96;
     border: none;
     width: 24px;
     height: 24px;
@@ -36,142 +42,80 @@ const BookInputDiv = styled.div`
   }
 `;
 
-const GenreInputWrapper = styled.div`
-  position: relative;
-  margin-left: 30px;
-`;
-const GenreDropDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100px;
-  height: 24px;
-  border: 1px solid #dee2e6;
-  border-radius: 0.5rem;
-  padding: 3px 10px 3px 10px;
-`;
-const MoreDetailInputDiv = styled.div``;
-
-const GenreUl = styled.ul`
-  margin: 0;
-  position: absolute;
-  padding: 0;
-  width: 110px;
-  z-index: 99;
-  height: 100px;
-  overflow-y: scroll;
-  list-style-type: none;
-`;
-const SelectedGenre = styled.div`
-  display: flex;
-`;
-interface RecBookList {
+// Interfaces
+interface RecBook {
   title: string;
   rating: number | null;
 }
 
+// Main Component
 const RecommendInput: React.FC = () => {
-  const [books, setBooks] = useState<RecBookList[]>([{ title: "", rating: 0 }]);
-  const [genre, setGenre] = useState<string[]>([]);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const handleTitleChange = (index: number, newTitle: string) => {
+  const [books, setBooks] = useState<RecBook[]>([{ title: "", rating: 0 }]);
+  const [age, setAge] = useState<number | null>(null);
+  const onAgeChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const age = parseInt(e.target.value, 10);
+    setAge(isNaN(age) ? null : age);
+  };
+
+  const handleChange = (
+    index: number,
+    value: string | number,
+    field: "title" | "rating"
+  ) => {
     setBooks(
-      books.map((book, bookIndex) =>
-        bookIndex === index ? { ...book, title: newTitle } : book
-      )
+      books.map((book, i) => (i === index ? { ...book, [field]: value } : book))
     );
   };
 
-  const handleRatingChange = (index: number, newRating: number) => {
-    setBooks(
-      books.map((book, bookIndex) =>
-        bookIndex === index ? { ...book, rating: newRating } : book
-      )
-    );
-  };
-
-  const moreBookClick = () => {
+  const addBook = () => {
     setBooks([...books, { title: "", rating: null }]);
   };
 
-  const setValue = (value: string) => {
-    setGenre([...genre, value]);
-  };
-  const removeGenre = (event: MouseEvent) => {
-    console.log(event);
-  };
+  const BookInputs = (book: RecBook, index: number) => (
+    <div key={index}>
+      <input
+        placeholder="책 제목"
+        required
+        value={book.title}
+        onChange={(e) => handleChange(index, e.target.value, "title")}
+      />
+      <input
+        type="number"
+        step="0.1"
+        min="0.0"
+        max="5.0"
+        placeholder="평점 / 5.0"
+        required
+        value={book.rating || ""}
+        onChange={(e) => handleChange(index, Number(e.target.value), "rating")}
+      />
+      {index === books.length - 1 && (
+        <button
+          onClick={addBook}
+          disabled={books[books.length - 1].title === ""}
+        >
+          +
+        </button>
+      )}
+    </div>
+  );
+
   return (
     <RecommendWrapper>
       <RecommendInputWrapper>
-        <BookInputDiv>
-          {books.map((book, index) => (
-            <div key={index}>
-              <input
-                placeholder="책 제목"
-                required
-                value={book.title}
-                onChange={(e) => handleTitleChange(index, e.target.value)}
-              />
-              <input
-                type="number"
-                step="0.1"
-                min="0.0"
-                max="5.0"
-                placeholder="평점 / 5.0"
-                required
-                value={book.rating || ""}
-                onChange={(e) =>
-                  handleRatingChange(index, Number(e.target.value))
-                }
-              />
-              {index === books.length - 1 ? (
-                <button
-                  onClick={moreBookClick}
-                  disabled={books[books.length - 1].title === ""}
-                >
-                  +
-                </button>
-              ) : (
-                ""
-              )}
-            </div>
-          ))}
-        </BookInputDiv>
+        <InputDiv>{books.map(BookInputs)}</InputDiv>
+        <GenreInputs />
         <div>
-          <GenreInputWrapper>
-            <GenreDropDiv onClick={() => setIsOpen((prev) => !prev)}>
-              장르
-              <UilAngleDown />
-            </GenreDropDiv>
-            {isOpen && (
-              <GenreUl>
-                {genreList.map((itm, idx) => (
-                  <MenuDropDown
-                    key={idx}
-                    value={itm}
-                    setIsOpen={setIsOpen}
-                    setValue={setValue}
-                  />
-                ))}
-              </GenreUl>
-            )}
-          </GenreInputWrapper>
-          <SelectedGenre>
-            {genre.map((itm, idx) => (
-              <div
-                style={{
-                  display: "flex",
-                }}
-              >
-                <div>{itm}</div>
-                <button onClick={(event) => removeGenre(event)}>
-                  <UilTrashAlt />
-                </button>
-              </div>
-            ))}
-          </SelectedGenre>
+          <input
+            type="number"
+            placeholder="나이"
+            required
+            value={age || ""}
+            onChange={(e) => onAgeChange(e)}
+          />
         </div>
-        <MoreDetailInputDiv></MoreDetailInputDiv>
+
+        <GenderInputs />
       </RecommendInputWrapper>
     </RecommendWrapper>
   );

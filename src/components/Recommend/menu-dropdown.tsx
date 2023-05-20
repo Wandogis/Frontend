@@ -9,16 +9,14 @@ interface DropDownProps {
 
 const Genreli = styled.li`
   width: 100%;
+  background-color: white;
   padding: 0.8rem 0.5rem 0.8rem 0.5rem;
   color: #868e96;
   font-weight: 500;
   font-size: 14px;
-  border: 1px solid red;
-  border-bottom: none;
-  :hover {
-    background-color: ${(props) => props.theme.pointYellow};
-  }
+  box-sizing: border-box;
 `;
+
 export const MenuDropDown: React.FC<DropDownProps> = ({
   value,
   setIsOpen,
