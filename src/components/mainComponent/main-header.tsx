@@ -1,7 +1,8 @@
-import { ReactComponent as Logo } from "../assets/main-logo.svg";
+import { ReactComponent as Logo } from "../../assets/main-logo.svg";
 import React, { useState, FormEvent } from "react";
 import styled from "styled-components";
 import { UilSearchAlt } from "@iconscout/react-unicons";
+import { useNavigate } from "react-router-dom";
 
 const HeaderWrapper = styled.div`
   width: 100%;
@@ -12,9 +13,11 @@ const HeaderWrapper = styled.div`
   margin-top: 40px;
 `;
 
-const LogoWrapper = styled.div`
+const LogoWrapper = styled.button`
   position: absolute;
   left: 80px;
+  background-color: transparent;
+  border: none;
 `;
 
 const InputBtnWrapper = styled.div`
@@ -63,10 +66,15 @@ const MainHeader: React.FC = () => {
     console.log("Search query submitted:", searchData.query);
     // 검색 api
   };
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/main`, { replace: true }); // 이동하고 싶은 경로
+  };
 
   return (
     <HeaderWrapper>
-      <LogoWrapper>
+      <LogoWrapper onClick={handleClick}>
         <Logo />
       </LogoWrapper>
       <form onSubmit={handleSubmit}>

@@ -7,7 +7,7 @@ import Recommend from "../pages/recommend";
 const Router: React.FC = () => {
   return (
     <Routes>
-      <Route path="/*" element={<Main />}></Route>
+      <Route path="/main" element={<Main />}></Route>
       <Route path="/challenge" element={<Challenge />}></Route>
       <Route path="/recommend" element={<Recommend />}></Route>
     </Routes>

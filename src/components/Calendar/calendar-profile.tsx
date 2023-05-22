@@ -4,7 +4,7 @@ import RenderHeader from "./header";
 import { styled } from "styled-components";
 import RenderDays from "./days";
 import RenderCells from "./cells";
-import MainProfile from "../main-profile";
+import MainProfile from "../mainComponent/main-profile";
 import kakaoLoginBtn from "../../assets/kakaoLoginBtn.png";
 import naverLoginBtn from "../../assets/naverLoginBtn.png";
 

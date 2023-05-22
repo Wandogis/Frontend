@@ -1,7 +1,7 @@
 import React, { useState, useEffect, memo, useMemo } from "react";
 import styled from "styled-components";
-import { ReactComponent as Avatar } from "../assets/avatars.svg";
-import { ReactComponent as Fire } from "../assets/fire.svg";
+import { ReactComponent as Avatar } from "../../assets/avatars.svg";
+import { ReactComponent as Fire } from "../../assets/fire.svg";
 import { UilAngleDown } from "@iconscout/react-unicons";
 
 const RankingBoxWrapper = styled.div`
