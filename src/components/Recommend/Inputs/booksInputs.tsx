@@ -1,23 +1,16 @@
+import { ReactComponent as Necessary } from "../..//../assets/necessary.svg";
 import { useState } from "react";
 import { UilMultiply } from "@iconscout/react-unicons";
-import { ItmBtn, MenuList } from "./genre-gender-inputs";
+import { MenuList } from "./genreInputs";
 import { styled } from "styled-components";
-import { ReactComponent as Necessary } from "../../assets/necessary.svg";
+import { InputBlank, PlusBtn, WriterBtn } from "./writerInputs";
 
-const WriterBtn = styled(ItmBtn)`
-  background-color: ${(props) => props.theme.mainYellow};
-  margin-top: 0;
+const BookInputWrapper = styled.div`
+  display: flex;
+  width: 300px;
+  align-items: center;
 `;
 
-const PlusBtn = styled.button`
-  width: 24px;
-  background-color: #dee2e6;
-  color: #868e96;
-  border: none;
-  width: 24px;
-  height: 24px;
-  border-radius: 5px;
-`;
 const InputDiv = styled.div`
   height: 250px;
   width: 350px;
@@ -25,23 +18,6 @@ const InputDiv = styled.div`
   border-right: 0.5px solid rgba(0, 0, 0, 0.2);
   padding-right: 20px;
 `;
-const InputBlank = styled.input`
-  border: 1px solid #dee2e6;
-  border-radius: 0.5rem;
-  height: 30px;
-  width: 80%;
-  margin-right: 10px;
-  font-size: 14px;
-  font-weight: 500;
-  padding-left: 10px;
-  color: #64655f;
-`;
-const BookInputWrapper = styled.div`
-  display: flex;
-  width: 300px;
-  align-items: center;
-`;
-
 interface RecBook {
   title: string;
   rating: number | null;
@@ -52,7 +28,7 @@ interface BookInputsProps {
   setBooks: React.Dispatch<React.SetStateAction<RecBook[]>>;
 }
 
-export const BookInputs: React.FC<BookInputsProps> = ({ books, setBooks }) => {
+const BookInputs: React.FC<BookInputsProps> = ({ books, setBooks }) => {
   const [book, setBook] = useState<string>("");
   const [rate, setRate] = useState<number | null>(null);
 
@@ -116,50 +92,4 @@ export const BookInputs: React.FC<BookInputsProps> = ({ books, setBooks }) => {
   );
 };
 
-interface WriterProps {
-  writers: string[];
-  setWriters: React.Dispatch<React.SetStateAction<string[]>>;
-}
-
-const WriterInputs: React.FC<WriterProps> = ({ writers, setWriters }) => {
-  const [writer, setWriter] = useState<string>("");
-  const onWriterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setWriter(e.target.value);
-  };
-  const AddWriter = () => {
-    if (writers.includes(writer)) {
-      setWriter("");
-      return;
-    } else {
-      setWriter("");
-      setWriters([...writers, writer]);
-    }
-  };
-  const removeWriter = (value: string) => {
-    setWriters(writers.filter((itm) => itm !== value));
-  };
-
-  return (
-    <div>
-      <InputBlank
-        placeholder="선호하는 작가"
-        required
-        value={writer}
-        onChange={(e) => onWriterChange(e)}
-      />
-      <PlusBtn onClick={AddWriter}>+</PlusBtn>
-      <MenuList>
-        {writers.map((itm, idx) => (
-          <WriterBtn key={idx}>
-            {itm}
-            <button>
-              <UilMultiply onClick={() => removeWriter(itm)} />
-            </button>
-          </WriterBtn>
-        ))}
-      </MenuList>
-    </div>
-  );
-};
-
-export default WriterInputs;
+export default BookInputs;
