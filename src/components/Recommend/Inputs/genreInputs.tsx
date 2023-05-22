@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { genreList } from "../../assets/book-genre";
-import { MenuDropDown } from "./dropdown-li";
+import { genreList } from "../../../assets/book-genre";
+import { MenuDropDown } from "../dropdown-li";
 import { UilAngleDown, UilMultiply } from "@iconscout/react-unicons";
-import { ReactComponent as Necessary } from "../../assets/necessary.svg";
-const MenuInputWrapper = styled.div`
+import { ReactComponent as Necessary } from "../../../assets/necessary.svg";
+
+export const MenuInputWrapper = styled.div`
   display: flex;
   position: relative;
 `;
 
-const DropDiv = styled.div`
+export const DropDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,13 +25,13 @@ const DropDiv = styled.div`
   color: #64655f;
 `;
 
-const UIMenuWrapper = styled.div`
+export const UIMenuWrapper = styled.div`
   padding-left: 30px;
   width: 350px;
   height: 250px;
   border-right: 0.5px solid rgba(0, 0, 0, 0.2);
 `;
-const GenreUl = styled.ul`
+export const Ul = styled.ul`
   margin: 0;
   position: absolute;
   padding: 0;
@@ -94,7 +95,7 @@ interface GenreProps {
   setGenre: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-export const GenreInputs: React.FC<GenreProps> = ({ genre, setGenre }) => {
+const GenreInputs: React.FC<GenreProps> = ({ genre, setGenre }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const toggleGenre = () => {
     setIsOpen((prev) => !prev);
@@ -119,7 +120,7 @@ export const GenreInputs: React.FC<GenreProps> = ({ genre, setGenre }) => {
           <UilAngleDown />
         </DropDiv>
         {isOpen && (
-          <GenreUl>
+          <Ul>
             {genreList.map((itm, idx) => (
               <MenuDropDown
                 key={idx}
@@ -128,7 +129,7 @@ export const GenreInputs: React.FC<GenreProps> = ({ genre, setGenre }) => {
                 setValue={addGenre}
               />
             ))}
-          </GenreUl>
+          </Ul>
         )}
       </MenuInputWrapper>
       <MenuList>
@@ -145,42 +146,4 @@ export const GenreInputs: React.FC<GenreProps> = ({ genre, setGenre }) => {
   );
 };
 
-interface GenderProps {
-  gender: string;
-  setGender: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export const GenderInputs: React.FC<GenderProps> = ({ gender, setGender }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  const genderList: string[] = ["여성", "남성"];
-  const toggleGenre = () => {
-    setIsOpen((prev) => !prev);
-  };
-  const OnSelectGender = (value: string) => {
-    setGender(value);
-  };
-
-  return (
-    <>
-      <MenuInputWrapper>
-        <DropDiv onClick={toggleGenre}>
-          {gender === "" ? "성별" : gender}
-          <UilAngleDown />
-        </DropDiv>
-        {isOpen && (
-          <GenreUl>
-            {genderList.map((itm, idx) => (
-              <MenuDropDown
-                key={idx}
-                value={itm}
-                setIsOpen={setIsOpen}
-                setValue={OnSelectGender}
-              />
-            ))}
-          </GenreUl>
-        )}
-      </MenuInputWrapper>
-    </>
-  );
-};
+export default GenreInputs;
