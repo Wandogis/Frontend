@@ -1,6 +1,6 @@
-import { ReactComponent as Book1 } from "../assets/book1.svg";
-import { ReactComponent as Book2 } from "../assets/book2.svg";
-import { ReactComponent as Book3 } from "../assets/book3.svg";
+import { ReactComponent as Book1 } from "../../assets/svg/book1.svg";
+import { ReactComponent as Book2 } from "../../assets/svg/book2.svg";
+import { ReactComponent as Book3 } from "../../assets/svg/book3.svg";
 
 export interface OnBook {
   id: number;

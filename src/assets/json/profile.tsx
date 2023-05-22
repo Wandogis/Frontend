@@ -1,4 +1,4 @@
-import { ReactComponent as Avatar } from "../assets/AvatarsProfile.svg";
+import { ReactComponent as Avatar } from "../../assets/svg/AvatarsProfile.svg";
 
 interface ProfileData {
   profileImg: JSX.Element;

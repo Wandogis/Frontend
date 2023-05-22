@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { genreList } from "../../../assets/book-genre";
+import { genreList } from "../../../assets/json/book-genre";
 import { MenuDropDown } from "../dropdown-li";
 import { UilAngleDown, UilMultiply } from "@iconscout/react-unicons";
-import { ReactComponent as Necessary } from "../../../assets/necessary.svg";
+import { ReactComponent as Necessary } from "../../../assets/svg/necessary.svg";
 
 export const MenuInputWrapper = styled.div`
   display: flex;

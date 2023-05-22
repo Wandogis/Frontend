@@ -1,4 +1,4 @@
-import { profileData } from "../../assets/profile";
+import { profileData } from "../../assets/json/profile";
 import React from "react";
 import styled from "styled-components";
 

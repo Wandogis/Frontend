@@ -1,4 +1,4 @@
-import { ReactComponent as Necessary } from "../..//../assets/necessary.svg";
+import { ReactComponent as Necessary } from "../../../assets/svg/necessary.svg";
 import { useState } from "react";
 import { UilMultiply } from "@iconscout/react-unicons";
 import { MenuList } from "./genreInputs";

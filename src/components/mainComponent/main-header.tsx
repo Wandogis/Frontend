@@ -1,4 +1,4 @@
-import { ReactComponent as Logo } from "../../assets/main-logo.svg";
+import { ReactComponent as Logo } from "../../assets/svg/main-logo.svg";
 import React, { useState, FormEvent } from "react";
 import styled from "styled-components";
 import { UilSearchAlt } from "@iconscout/react-unicons";

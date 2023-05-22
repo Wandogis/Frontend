@@ -12,7 +12,7 @@ import {
 } from "date-fns";
 import React from "react";
 import styled from "styled-components";
-import { BookCalData } from "../../assets/calbook";
+import { BookCalData } from "../../assets/json/calbook";
 interface RenderCellsProps {
   currentMonth: Date;
   selectedDate: Date | null;

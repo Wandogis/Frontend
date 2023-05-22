@@ -6,7 +6,7 @@ import WriterInputs from "./Inputs/writerInputs";
 import BookInputs from "./Inputs/booksInputs";
 import { UilMessage } from "@iconscout/react-unicons";
 import Recommended from "./Results/recommended";
-import { onGoingBook } from "../../assets/main-challengeList";
+import { onGoingBook } from "../../assets/json/main-challengeList";
 // Styles
 const RecommendWrapper = styled.div`
   width: 80%;
