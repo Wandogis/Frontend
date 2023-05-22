@@ -7,7 +7,7 @@ interface DropDownProps {
   setValue: (value: string) => void;
 }
 
-const Genreli = styled.li`
+const Ii = styled.li`
   width: 100%;
   background-color: white;
   padding: 0.8rem 0.5rem 0.8rem 0.5rem;
@@ -27,5 +27,5 @@ export const MenuDropDown: React.FC<DropDownProps> = ({
     setValue(value);
     setIsOpen(false);
   };
-  return <Genreli onClick={(event) => onClick(event, value)}>{value}</Genreli>;
+  return <Ii onClick={(event) => onClick(event, value)}>{value}</Ii>;
 };

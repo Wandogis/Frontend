@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { GenderInputs, GenreInputs } from "./genre-gender-inputs";
-import WriterInputs, { BookInputs } from "./books-writer-Inputs";
-import { UilMailbox } from "@iconscout/react-unicons";
-
+import GenreInputs from "./Inputs/genreInputs";
+import GenderInputs from "./Inputs/genderInputs";
+import WriterInputs from "./Inputs/writerInputs";
+import BookInputs from "./Inputs/booksInputs";
+import { UilMessage } from "@iconscout/react-unicons";
+import Recommended from "./Results/recommended";
+import { onGoingBook } from "../../assets/main-challengeList";
 // Styles
 const RecommendWrapper = styled.div`
   width: 80%;
@@ -67,6 +70,13 @@ interface RecBook {
   rating: number | null;
 }
 
+const isButtonDisabled = (books: RecBook[], genre: string[]): boolean => {
+  if (!books || !genre) {
+    return false;
+  }
+  return books.length < 3 || genre.length === 0;
+};
+
 // Main Component
 const RecommendInput: React.FC = () => {
   const [books, setBooks] = useState<RecBook[]>([]);
@@ -74,10 +84,6 @@ const RecommendInput: React.FC = () => {
   const [age, setAge] = useState<number | null>(null);
   const [gender, setGender] = useState<string>("");
   const [writers, setWriters] = useState<string[]>([]);
-
-  const isButtonDisabled = (): boolean => {
-    return books.length < 3 || genre.length === 0;
-  };
 
   const submitRecommendations = () => {
     const recommendationData = {
@@ -93,6 +99,7 @@ const RecommendInput: React.FC = () => {
     const age = parseInt(e.target.value, 10);
     setAge(isNaN(age) ? null : age);
   };
+  const recommendBooks = onGoingBook;
 
   return (
     <RecommendWrapper>
@@ -116,15 +123,16 @@ const RecommendInput: React.FC = () => {
             <RecBtnWrapper>
               <RecommendBtn
                 onClick={submitRecommendations}
-                disabled={isButtonDisabled()}
+                disabled={isButtonDisabled(books, genre)}
               >
                 추천 받기
-                <UilMailbox />
+                <UilMessage />
               </RecommendBtn>
             </RecBtnWrapper>
           </div>
         </RecommendInputWrapper>
       </RecommendContainer>
+      <Recommended RecommendBooks={recommendBooks} />
     </RecommendWrapper>
   );
 };
