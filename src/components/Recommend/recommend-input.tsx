@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import GenreInputs from "./Inputs/genreInputs";
-import GenderInputs from "./Inputs/genderInputs";
-import WriterInputs from "./Inputs/writerInputs";
-import BookInputs from "./Inputs/booksInputs";
+import GenreInputs from "./inputs/genre-inputs";
+import GenderInputs from "./inputs/gender-inputs";
+import WriterInputs from "./inputs/writer-inputs";
+import BookInputs from "./inputs/books-inputs";
 import { UilMessage } from "@iconscout/react-unicons";
-import Recommended from "./Results/recommended";
+import Recommended from "./results/recommended";
 import { onGoingBook } from "../../assets/json/main-challengeList";
 // Styles
 const RecommendWrapper = styled.div`

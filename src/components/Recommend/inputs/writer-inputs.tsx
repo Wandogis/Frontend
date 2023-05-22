@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { UilMultiply } from "@iconscout/react-unicons";
-import { ItmBtn, MenuList } from "./genreInputs";
+import { ItmBtn, MenuList } from "./genre-inputs";
 import { styled } from "styled-components";
 
 export const WriterBtn = styled(ItmBtn)`

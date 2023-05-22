@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
-import { OnBook } from "../../assets/main-challengeList";
+import { OnBook } from "../../assets/json/main-challengeList";
 interface OnchallengProps {
   Booklist: OnBook[];
   Ongoing: boolean;

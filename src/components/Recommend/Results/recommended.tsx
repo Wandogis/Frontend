@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { OnBook } from "../../../assets/main-challengeList";
-
+import { OnBook } from "../../../assets/json/main-challengeList";
 const RecommendedWrapper = styled.div`
   display: flex;
   height: 300px;

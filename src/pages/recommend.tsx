@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 import MainHeader from "../components/mainComponent/main-header";
 import MainMenuBar from "../components/mainComponent/main-menu-bar";
 import theme from "../assets/json/theme";
-import RecommendInput from "../components/Recommend/recommend-input";
+import RecommendInput from "../components/recommend/recommend-input";
 
 const Recommend: React.FC = () => {
   return (

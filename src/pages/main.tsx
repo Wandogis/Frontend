@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 import MainMenuBar from "../components/mainComponent/main-menu-bar";
 import SlideBook from "../components/mainComponent/main-slide-book";
 import OnChallenge from "../components/mainComponent/ongoing-challenge";
-import { Calender } from "../components/Calendar/calendar-profile";
+import { Calender } from "../components/bookCalendar/calendar-profile";
 import { onGoingBook, ExpectBook } from "../assets/json/main-challengeList";
 
 const SlideCalWrapper = styled.div`

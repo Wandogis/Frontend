@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MenuDropDown } from "../dropdown-li";
 import { UilAngleDown } from "@iconscout/react-unicons";
-import { MenuInputWrapper, DropDiv, Ul } from "./genreInputs";
+import { MenuInputWrapper, DropDiv, Ul } from "./genre-inputs";
 
 interface GenderProps {
   gender: string;

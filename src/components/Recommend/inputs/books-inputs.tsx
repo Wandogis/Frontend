@@ -1,9 +1,9 @@
 import { ReactComponent as Necessary } from "../../../assets/svg/necessary.svg";
 import { useState } from "react";
 import { UilMultiply } from "@iconscout/react-unicons";
-import { MenuList } from "./genreInputs";
+import { MenuList } from "./genre-inputs";
 import { styled } from "styled-components";
-import { InputBlank, PlusBtn, WriterBtn } from "./writerInputs";
+import { InputBlank, PlusBtn, WriterBtn } from "./writer-inputs";
 
 const BookInputWrapper = styled.div`
   display: flex;
