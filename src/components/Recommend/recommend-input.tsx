@@ -5,7 +5,7 @@ import GenderInputs from "./inputs/gender-inputs";
 import WriterInputs from "./inputs/writer-inputs";
 import BookInputs from "./inputs/books-inputs";
 import { UilMessage } from "@iconscout/react-unicons";
-import Recommended from "./results/recommended";
+import Recommended from "./Results/recommended";
 import { onGoingBook } from "../../assets/json/main-challengeList";
 // Styles
 const RecommendWrapper = styled.div`
