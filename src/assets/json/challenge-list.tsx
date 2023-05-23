@@ -2,7 +2,7 @@ import { ReactComponent as Book1 } from "../../assets/svg/book1.svg";
 import { ReactComponent as Book2 } from "../../assets/svg/book2.svg";
 import { ReactComponent as Book3 } from "../../assets/svg/book3.svg";
 
-export interface OnBook {
+export interface challengeBook {
   id: number;
   img: JSX.Element;
   title: string;
@@ -12,7 +12,7 @@ export interface OnBook {
   progress: number;
 }
 
-export const preBooks: OnBook[] = [
+export const preBooks: challengeBook[] = [
   {
     id: 1,
     img: <Book1 />,
@@ -33,7 +33,7 @@ export const preBooks: OnBook[] = [
   },
 ];
 
-export const ingBook: OnBook[] = [
+export const ingBook: challengeBook[] = [
   {
     id: 2,
     img: <Book2 />,
@@ -53,7 +53,7 @@ export const ingBook: OnBook[] = [
     progress: 82,
   },
 ];
-export const edBook: OnBook[] = [
+export const edBook: challengeBook[] = [
   {
     id: 3,
     img: <Book3 />,
