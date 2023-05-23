@@ -5,9 +5,13 @@ import GenderInputs from "./inputs/gender-inputs";
 import WriterInputs from "./inputs/writer-inputs";
 import BookInputs from "./inputs/books-inputs";
 import { UilMessage } from "@iconscout/react-unicons";
-import Recommended from "./Results/recommended";
+import Recommended from "./results/recommended";
 import { onGoingBook } from "../../assets/json/main-challengeList";
 // Styles
+
+interface RecBtnProps {
+  disabled: boolean;
+}
 const RecommendWrapper = styled.div`
   width: 80%;
   margin-top: 1.5rem;
@@ -50,14 +54,15 @@ const RecBtnWrapper = styled.div`
   justify-content: flex-end;
   margin-top: 80px;
 `;
-const RecommendBtn = styled.button`
+const RecommendBtn = styled.button<RecBtnProps>`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 140px;
   height: 60px;
   border: none;
-  background-color: ${(props) => props.theme.pointYellow};
+  background-color: ${(props) =>
+    props.disabled ? "#BCBEAF" : props.theme.pointYellow};
   padding: 10px;
   font-size: 18px;
   color: white;
