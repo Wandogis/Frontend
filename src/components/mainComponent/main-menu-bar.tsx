@@ -31,13 +31,16 @@ const MenuBtn = styled.button`
 const MenuBtnMargin = styled(MenuBtn)`
   margin-left: 80px;
 `;
-const CHE: string = "challenge";
+const CHE: string = "moreChallenge";
 const REC: string = "recommend";
 const MainMenuBar: React.FC = () => {
   const navigate = useNavigate();
-
   const handleClick = (Link: string) => {
-    navigate(`/${Link}`); // 이동하고 싶은 경로
+    if (Link === REC) {
+      navigate(`/${Link}`); // 이동하고 싶은 경로
+    } else {
+      navigate(`/${Link}`);
+    }
   };
 
   return (
