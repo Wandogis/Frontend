@@ -1,7 +1,5 @@
 import MainHeader from "../components/mainComponent/main-header";
-import theme from "../assets/json/theme";
 import styled from "styled-components";
-import { ThemeProvider } from "styled-components";
 import MainMenuBar from "../components/mainComponent/main-menu-bar";
 import SlideBook from "../components/mainComponent/main-slide-book";
 import OnChallenge from "../components/mainComponent/ongoing-challenge";
@@ -13,7 +11,7 @@ const SlideCalWrapper = styled.div`
 `;
 const Main: React.FC = () => {
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <MainHeader />
       <MainMenuBar />
       <SlideCalWrapper>
@@ -22,7 +20,7 @@ const Main: React.FC = () => {
       </SlideCalWrapper>
       <OnChallenge Booklist={onGoingBook} Ongoing={true} />
       <OnChallenge Booklist={ExpectBook} Ongoing={false} />
-    </ThemeProvider>
+    </>
   );
 };
 export default Main;

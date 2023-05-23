@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { OnBook } from "../../assets/json/main-challengeList";
+
 interface OnchallengProps {
   Booklist: OnBook[];
   Ongoing: boolean;
@@ -53,6 +55,14 @@ const OnChallenge: React.FC<OnchallengProps> = ({ Booklist, Ongoing }) => {
   const [sorting, setSorting] = useState<boolean>(true);
   const [booklist, setBooklist] = useState<OnBook[]>(Booklist);
 
+  const navigate = useNavigate();
+
+  const Link = "moreChallenge";
+
+  const handleMoreBtn = () => {
+    navigate(`/${Link}`, { state: { Ongoing } }); // passing data as state
+  };
+
   const onClick = (Sortby: boolean) => {
     setSorting(Sortby);
   };
@@ -73,7 +83,7 @@ const OnChallenge: React.FC<OnchallengProps> = ({ Booklist, Ongoing }) => {
     <OnChallengeWrapper>
       <OnHeader>
         <div>{Ongoing ? "진행 중인 챌린지" : "진행 예정 챌린지"}</div>
-        <Onbtn>더보기</Onbtn>
+        <Onbtn onClick={handleMoreBtn}>더보기</Onbtn>
       </OnHeader>
       <BtnWrapper>
         <Onbtn onClick={() => onClick(true)}>인기순</Onbtn>
