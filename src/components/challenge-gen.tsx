@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { styled } from "styled-components";
-//import Modal from "./challenge-modal";
+import Modal from "./challenge-modal";
 
 const ChallengeGen: React.FC = () => {
   const ChallengeWrapper = styled.div`
@@ -9,7 +9,7 @@ const ChallengeGen: React.FC = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: aqua;
+  background-color: white;
   border-radius: 1rem;
   margin-top: 1.5rem;
   margin-left: 3rem;
@@ -20,6 +20,7 @@ const GenerateButton = styled.button`
   width: 60%;
   height: 45px;
   color: white;
+  font-weight: 600;
   background-color: black;
   border: none;
   border-radius: 0.5rem;
@@ -36,19 +37,22 @@ const closeModal = () => {
   setIsOpenModal(false);
 };
 
-//modal 사이 컴포넌트 하나 더 추가
+const handleSubmit = () => {
+  setIsOpenModal(false);
+};
+
   return (
     <ChallengeWrapper>
       <GenerateButton type="submit" onClick={openModal}>
         챌린지 생성하기
       </GenerateButton>
+      {isOpenModal && (
+        <Modal
+          closeModal={closeModal}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </ChallengeWrapper>
   );
 };
 export default ChallengeGen;
-
-/*
-{isOpenModal && (
-        <Modal onClose={closeModal}>
-        </Modal>)}
-    */

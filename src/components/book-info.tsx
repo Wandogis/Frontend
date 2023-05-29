@@ -1,7 +1,8 @@
 import React from 'react';
 import { styled } from "styled-components";
-import { ReactComponent as Book1 } from "../assets/book1.svg";
+import { ReactComponent as Book1 } from "../assets/svg/book1.svg";
 import HorizonLine from "../assets/horizonline"
+//스타일 수정
 
 const BookWrapper = styled.div`
   width: 90%;
@@ -13,6 +14,7 @@ const BookWrapper = styled.div`
   margin-top: 1.5rem;
   margin-left: 3rem;
   padding: 2rem;
+  background-color: white;
 `;
 
 const BookInfoWrapper = styled.div`
@@ -21,7 +23,7 @@ const BookInfoWrapper = styled.div`
 `;
 
 const BookTitle = styled.div`
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 700;
 `;
 
@@ -53,7 +55,7 @@ const BookItem: React.FC<{ book: Book }> = ({book}) => (
     <BookInfoWrapper>
       <BookTitle>{book.title}</BookTitle>
       <BookSum>{book.summary}</BookSum>
-      <HorizonLine width="70%" />
+      <HorizonLine width="70%"/>
       <BookDetail>분류 {book.genre}</BookDetail>
       <BookDetail>지은이 {book.author}</BookDetail>
       <BookDetail>출판사 {book.publisher}</BookDetail>

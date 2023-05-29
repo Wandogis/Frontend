@@ -14,7 +14,7 @@ const Router: React.FC = () => {
         <Route path="/main" element={<Main />}></Route>
         <Route path="/recommend" element={<Recommend />}></Route>
         <Route path="/moreChallenge" element={<MoreChallenge />}></Route>
-        <Route path="/" element={<Bookdetail />}></Route>
+        <Route path="/bookDetail" element={<Bookdetail />}></Route>
       </Routes>
     </ThemeProvider>
   );
