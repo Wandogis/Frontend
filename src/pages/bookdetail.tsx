@@ -2,9 +2,9 @@ import React from 'react';
 import MainHeader from "../components/mainComponent/main-header";
 import MainMenuBar from "../components/mainComponent/main-menu-bar";
 import HorizonLine from "../assets/horizonline"
-import BookInfo from "../components/book-info"
-import ChallengeGen from "../components/challenge-gen"
-import ChallengeList from "../components/challenge-list"
+import BookInfo from "../components/bookDetail/book-info"
+import ChallengeGen from "../components/bookDetail/challenge-gen"
+import ChallengeList from "../components/bookDetail/challenge-list"
 import styled from "styled-components";
 
 const Title = styled.div`

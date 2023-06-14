@@ -1,7 +1,7 @@
 import React from 'react';
 import { styled } from "styled-components";
 import { ReactComponent as Book1 } from "../assets/svg/book1.svg";
-import HorizonLine from "../assets/horizonline"
+import HorizonLine from "../../assets/horizonline"
 
 const BookWrapper = styled.div`
   width: 90%;
