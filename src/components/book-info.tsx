@@ -2,13 +2,11 @@ import React from 'react';
 import { styled } from "styled-components";
 import { ReactComponent as Book1 } from "../assets/svg/book1.svg";
 import HorizonLine from "../assets/horizonline"
-//스타일 수정
 
 const BookWrapper = styled.div`
   width: 90%;
   height: 350px;
   display: flex;
-  justify-content: center;
   align-items: center;
   border-radius: 1rem;
   margin-top: 1.5rem;
@@ -19,23 +17,32 @@ const BookWrapper = styled.div`
 
 const BookInfoWrapper = styled.div`
   margin-left: 50px;
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 `;
 
 const BookTitle = styled.div`
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 800;
+  margin-bottom: 1rem;
 `;
 
 const BookSum = styled.div`
   font-weight: 600;
-  font-size: 12px;
+  font-size: 13px;
+  color: #2F2F2F;
 `;
 
 const BookDetail = styled.div`
   margin-bottom: 5px;
   font-weight: 600;
   font-size: 14px;
+`;
+
+const DetailContent = styled.span<{isGenre?: boolean}>`
+  margin-left: 1rem;
+  color: ${props => props.isGenre ? props.theme.mainGreen : "inherit"};
 `;
 
 interface Book {
@@ -55,12 +62,12 @@ const BookItem: React.FC<{ book: Book }> = ({book}) => (
     <BookInfoWrapper>
       <BookTitle>{book.title}</BookTitle>
       <BookSum>{book.summary}</BookSum>
-      <HorizonLine width="70%"/>
-      <BookDetail>분류 {book.genre}</BookDetail>
-      <BookDetail>지은이 {book.author}</BookDetail>
-      <BookDetail>출판사 {book.publisher}</BookDetail>
-      <BookDetail>출간일 {book.date}</BookDetail>
-      <BookDetail>페이지수 {book.pages}</BookDetail>
+      <HorizonLine borderBottom="1px solid #aaa"/>
+      <BookDetail>분류<DetailContent isGenre>{book.genre}</DetailContent></BookDetail>
+      <BookDetail>지은이 <DetailContent>{book.author}</DetailContent></BookDetail>
+      <BookDetail>출판사 <DetailContent>{book.publisher}</DetailContent></BookDetail>
+      <BookDetail>출간일 <DetailContent>{book.date}</DetailContent></BookDetail>
+      <BookDetail>쪽수 <DetailContent>{book.pages}</DetailContent></BookDetail>
     </BookInfoWrapper>
   </>
 );

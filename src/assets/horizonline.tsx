@@ -1,17 +1,18 @@
 import React from "react";
 
 interface HorizonLineProps {
-  width: string;
+  borderBottom: string;
+  marginLeft?: string;
 }
-//컬러, 볼드 빼기
-const HorizonLine: React.FC<HorizonLineProps> = ({ width }) => {
+const HorizonLine: React.FC<HorizonLineProps> = ({ borderBottom, marginLeft }) => {
   return (
     <div
       style={{
-        width: width,
-        borderBottom: "1px solid #aaa",
+        width: "100%",
+        borderBottom: borderBottom,
         lineHeight: "0.1em",
         margin: "20px 0",
+        marginLeft: marginLeft || "0px",
       }}
     ></div>
   );
