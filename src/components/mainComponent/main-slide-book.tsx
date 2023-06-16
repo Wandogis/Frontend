@@ -4,6 +4,7 @@ import { ReactComponent as Book2 } from "../../assets/svg/book2.svg";
 import { ReactComponent as Book3 } from "../../assets/svg/book3.svg";
 import { styled } from "styled-components";
 import { UilAngleRightB, UilAngleLeftB } from "@iconscout/react-unicons";
+import { useNavigate } from "react-router-dom";
 // import { UilEllipsisH } from '@iconscout/react-unicons'
 const BookWrapper = styled.div`
   width: 60%;
@@ -67,27 +68,12 @@ interface Books {
   summary: string;
 }
 
-const BookItem: React.FC<{ book: Books }> = memo(({ book }) => (
-  <>
-    <div>{book.img}</div>
-    <BookInfoWrapper>
-      <BookTitle>{book.title}</BookTitle>
-      <BookDetail>{book.genre}</BookDetail>
-      <BookDetail>{book.date}</BookDetail>
-      <BookDetail>{book.pages}</BookDetail>
-      <BookDetail>{book.weight}</BookDetail>
-      <BookDetail>{book.size}</BookDetail>
-      <BookSum>{book.summary}</BookSum>
-      <BtnWrapper>
-        <BookBtn>더 알아보기</BookBtn>
-      </BtnWrapper>
-    </BookInfoWrapper>
-  </>
-));
-
 const SlideBook: React.FC = () => {
   const [currentBooksIndex, setcurrentBooksIndex] = useState<number>(0);
-
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/bookDetail`); // 이동하고 싶은 경로
+  };
   const books: Books[] = useMemo(
     () => [
       {
@@ -129,6 +115,24 @@ const SlideBook: React.FC = () => {
     ],
     []
   );
+
+  const BookItem: React.FC<{ book: Books }> = memo(({ book }) => (
+    <>
+      <div>{book.img}</div>
+      <BookInfoWrapper>
+        <BookTitle>{book.title}</BookTitle>
+        <BookDetail>{book.genre}</BookDetail>
+        <BookDetail>{book.date}</BookDetail>
+        <BookDetail>{book.pages}</BookDetail>
+        <BookDetail>{book.weight}</BookDetail>
+        <BookDetail>{book.size}</BookDetail>
+        <BookSum>{book.summary}</BookSum>
+        <BtnWrapper>
+          <BookBtn onClick={() => handleClick()}>더 알아보기</BookBtn>
+        </BtnWrapper>
+      </BookInfoWrapper>
+    </>
+  ));
 
   const onNextClick = (num: number) => {
     if (num === 1) {
