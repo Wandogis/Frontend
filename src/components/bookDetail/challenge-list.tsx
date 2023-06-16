@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import HorizonLine from "../../assets/json/horizonline"
-import { ingChallengeList } from '../../assets/ing-challenge-list';
+import React, { useState } from "react";
+import styled from "styled-components";
+import HorizonLine from "../../assets/json/horizonline";
+import { ingChallengeList } from "../../assets/json/ing-challenge-list";
 import ApplyModal from "./challenge-apply-modal";
 
 interface ChallengeData {
@@ -66,53 +66,63 @@ const ChallengeList: React.FC = () => {
   `;
 
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
-  const [selectedChallengeId, setSelectedChallengeId] = useState<number | null>(null);
-  const [challenges, setChallenges] = useState<ChallengeData[]>(ingChallengeList);
+  const [selectedChallengeId, setSelectedChallengeId] = useState<number | null>(
+    null
+  );
+  const [challenges, setChallenges] =
+    useState<ChallengeData[]>(ingChallengeList);
 
   const openModal = (id: number) => {
     setIsOpenModal(true);
     setSelectedChallengeId(id);
   };
-  
+
   const closeModal = () => {
     setIsOpenModal(false);
     setSelectedChallengeId(null);
   };
 
   const submitApply = (id: number) => {
-    setChallenges(challenges.map(challenge => 
-      challenge.id === id ? {...challenge, participant: challenge.participant + 1} : challenge
-    ));
+    setChallenges(
+      challenges.map((challenge) =>
+        challenge.id === id
+          ? { ...challenge, participant: challenge.participant + 1 }
+          : challenge
+      )
+    );
     closeModal();
   };
 
   return (
     <ListContainer>
-    {challenges.map((challenge: ChallengeData) => (
-      <ChallengeListWrapper key={challenge.id}>
-        <ChallengeTitle>{challenge.challengeTitle}</ChallengeTitle>
-        <HorizonLine borderBottom="1px solid #575757"/>
-        <ChallengeListDetail>
-          진행 기간 <RightAlignText>{challenge.startDate}-{challenge.endDate}</RightAlignText>
-        </ChallengeListDetail>
-        <ChallengeListDetail>
-          신청 인원 <RightAlignText>{challenge.participant}명</RightAlignText>
-        </ChallengeListDetail>
-        <ButtonWrapper>
-          <ApplyButton onClick={() => openModal(challenge.id)}>
-            챌린지 신청하기
-          </ApplyButton>
-          {isOpenModal && selectedChallengeId === challenge.id && (
-            <ApplyModal
-              id={challenge.id}
-              closeModal={closeModal}
-              submitApply={submitApply}
-            />
-          )}
-        </ButtonWrapper>
-      </ChallengeListWrapper>
-    ))}
-  </ListContainer>
+      {challenges.map((challenge: ChallengeData) => (
+        <ChallengeListWrapper key={challenge.id}>
+          <ChallengeTitle>{challenge.challengeTitle}</ChallengeTitle>
+          <HorizonLine borderBottom="1px solid #575757" />
+          <ChallengeListDetail>
+            진행 기간{" "}
+            <RightAlignText>
+              {challenge.startDate}-{challenge.endDate}
+            </RightAlignText>
+          </ChallengeListDetail>
+          <ChallengeListDetail>
+            신청 인원 <RightAlignText>{challenge.participant}명</RightAlignText>
+          </ChallengeListDetail>
+          <ButtonWrapper>
+            <ApplyButton onClick={() => openModal(challenge.id)}>
+              챌린지 신청하기
+            </ApplyButton>
+            {isOpenModal && selectedChallengeId === challenge.id && (
+              <ApplyModal
+                id={challenge.id}
+                closeModal={closeModal}
+                submitApply={submitApply}
+              />
+            )}
+          </ButtonWrapper>
+        </ChallengeListWrapper>
+      ))}
+    </ListContainer>
   );
 };
 export default ChallengeList;
