@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import HorizonLine from "../../assets/horizonline"
+import HorizonLine from "../../assets/json/horizonline"
 import { ingChallengeList } from '../../assets/ing-challenge-list';
 import ApplyModal from "./challenge-apply-modal";
 
