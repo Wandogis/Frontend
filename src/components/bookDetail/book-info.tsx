@@ -59,7 +59,7 @@ interface Book {
 const BookItem: React.FC<{ book: Book }> = ({ book }) => (
   <>
     <div>
-      <img src={book.img} alt="" width="200px" height="250px" />
+      <img src={book.img} alt="" width="200px" />
     </div>
     <BookInfoWrapper>
       <BookTitle>{book.title}</BookTitle>

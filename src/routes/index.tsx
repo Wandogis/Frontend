@@ -17,11 +17,8 @@ const Router: React.FC = () => {
         <Route path="/recommend" element={<Recommend />}></Route>
         <Route path="/moreChallenge" element={<MoreChallenge />}></Route>
         <Route path="/bookDetail" element={<Bookdetail />}></Route>
-<<<<<<< HEAD
         <Route path="/challengeDetail" element={<ChallengeDetail />}></Route>
-=======
         <Route path="/mypage" element={<Mypage />}></Route>
->>>>>>> a9b5827523e1055c27dc5a1ee9bbd8f550701223
       </Routes>
     </ThemeProvider>
   );
