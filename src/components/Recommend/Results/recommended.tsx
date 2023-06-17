@@ -81,7 +81,7 @@ const Recommended: React.FC<RecommendedProps> = ({ RecommendBooks, click }) => {
       <RecommendList>
         {books.map((itm, idx) => (
           <RecedBook key={idx}>
-            {itm.img}
+            <img src={itm.img} alt="" width="200px" height="250px" />
             <button onClick={() => rmRecommend(itm.id)}>X</button>
           </RecedBook>
         ))}
