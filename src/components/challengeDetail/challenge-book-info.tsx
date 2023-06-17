@@ -7,7 +7,7 @@ const ChallengeBookWrapper = styled.div`
   width: 60%;
   height: 350px;
   display: flex;
-  align-items: center;
+  flex-direction: row;
   border-radius: 1rem;
   margin-top: 1.5rem;
   margin-left: 3rem;
@@ -15,7 +15,18 @@ const ChallengeBookWrapper = styled.div`
   background-color: white;
 `;
 
+const BookImageWrapper = styled.div`
+  margin-top: 1rem;
+  margin-left: 1rem;
+`;
+
+const BookInfoChallengeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const BookInfoWrapper = styled.div`
+  margin-top: 1rem;
   margin-left: 50px;
   display: flex;
   flex-direction: column;
@@ -25,8 +36,9 @@ const BookInfoWrapper = styled.div`
 const ChallengeInfoWrapper = styled.div`
   margin-left: 50px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: 0.2rem;
+  width: 40%;
 `;
 
 const BookTitle = styled.div`
@@ -48,6 +60,19 @@ const BookGenre = styled.div`
   font-size: 14px;
 `;
 
+const ChallengeListDetail = styled.div`
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2rem;
+`;
+
+const RightAlignText = styled.span`
+  text-align: right;
+  font-weight: 600;
+`;
+
 interface Book {
   title: string;
   img: JSX.Element;
@@ -62,26 +87,70 @@ interface CahllengeInfo {
 }
 
 const BookItem: React.FC<{ book: Book }> = ({book}) => (
-  <>
-    <div>{book.img}</div>
-    <BookInfoWrapper>
-      <BookGenre>{book.genre}</BookGenre>
-      <BookTitle>{book.title}</BookTitle>
-      <BookSum>{book.summary}</BookSum>
-      <HorizonLine borderBottom="1px solid #aaa"/>
-    </BookInfoWrapper>
-  </>
+  <BookInfoWrapper>
+    <BookGenre>{book.genre}</BookGenre>
+    <BookTitle>{book.title}</BookTitle>
+    <BookSum>{book.summary}</BookSum>
+    <HorizonLine borderBottom="1px solid #aaa"/>
+  </BookInfoWrapper>
 );
 
 const ChallengeInfoItem: React.FC<{ info: CahllengeInfo }> = ({info}) => (
-  <>
-    <ChallengeInfoWrapper>
-      <BookGenre>{info.startDate}</BookGenre>
-      <BookGenre>{info.endDate}</BookGenre>
-      <BookGenre>{info.participant}명</BookGenre>
-    </ChallengeInfoWrapper>
-  </>
+  <ChallengeInfoWrapper>
+    <ChallengeListDetail>
+      기간 
+      <RightAlignText>{info.startDate}-{info.endDate}</RightAlignText>
+    </ChallengeListDetail>
+    <ChallengeListDetail>
+      참여
+      <RightAlignText>{info.participant}명</RightAlignText>
+    </ChallengeListDetail>
+  </ChallengeInfoWrapper>
 );
+
+const ProgressWrapper = styled.div`
+  width: 90%;
+  height: 25px;
+  background: #e0e0e0;
+  border-radius: 15px;
+  margin-left: 50px;
+  margin-top: 1rem;
+  position: relative;
+  display: flex;
+`;
+
+const ProgressBar = styled.div<{percentage: number}>`
+  width: ${props => props.percentage}%;
+  height: 100%;
+  background: ${(props) => props.theme.mainYellow};
+  border-radius: 15px;
+  position: absolute;
+`;
+
+const ProgressText = styled.span`
+  font-size: 17px;
+  font-weight: 600;
+  z-index: 1;
+  margin-left: 10px;
+`;
+
+const ChallengeProgress: React.FC<{info: CahllengeInfo}> = ({info}) => {
+  const challengeStartDate = new Date(info.startDate);
+  const challengeEndDate = new Date(info.endDate);
+  const currentDate = new Date();
+  
+  const totalDays = Math.floor((challengeEndDate.getTime() - challengeStartDate.getTime()) / (1000 * 60 * 60 * 24));
+  const elapsedDays = Math.floor((currentDate.getTime() - challengeStartDate.getTime()) / (1000 * 60 * 60 * 24));
+  
+  const progress = (elapsedDays / totalDays) * 100;
+  
+  return (
+    <ProgressWrapper>
+      <ProgressBar percentage={progress} />
+      <ProgressText>{Math.round(progress)}%</ProgressText>
+    </ProgressWrapper>
+  );
+};
 
 const ChallengeBookInfo: React.FC = () => {
   const book1:Book = {
@@ -95,14 +164,20 @@ const ChallengeBookInfo: React.FC = () => {
   const challenge1: CahllengeInfo = {
     startDate: "2023-06-15",
     endDate: "2023-06-29",
-    participant: 5,
+    participant: 3,
   }
 
   return (
     <ChallengeBookWrapper>
-      <BookItem book={book1} />
+      <BookImageWrapper>
+        <Book1 />
+      </BookImageWrapper>
+      <BookInfoChallengeWrapper>
+        <BookItem book={book1} />
+        <ChallengeInfoItem info={challenge1} />
+        <ChallengeProgress info={challenge1} />
+      </BookInfoChallengeWrapper>
     </ChallengeBookWrapper>
   );
 };
 export default ChallengeBookInfo;
-//      <ChallengeInfoItem info={challenge1} />
