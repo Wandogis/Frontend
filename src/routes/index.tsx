@@ -6,6 +6,7 @@ import MoreChallenge from "../pages/more-challenge";
 import { ThemeProvider } from "styled-components";
 import Bookdetail from "../pages/bookdetail";
 import theme from "../assets/json/theme";
+import Mypage from "../pages/mypage";
 
 const Router: React.FC = () => {
   return (
@@ -15,6 +16,7 @@ const Router: React.FC = () => {
         <Route path="/recommend" element={<Recommend />}></Route>
         <Route path="/moreChallenge" element={<MoreChallenge />}></Route>
         <Route path="/bookDetail" element={<Bookdetail />}></Route>
+        <Route path="/mypage" element={<Mypage />}></Route>
       </Routes>
     </ThemeProvider>
   );
