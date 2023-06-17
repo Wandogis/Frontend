@@ -1,5 +1,6 @@
 import { profileData } from "../../assets/json/profile";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const MainProfileWrapper = styled.div`
@@ -41,12 +42,20 @@ const RankNum = styled(FontWrapper)`
 interface ProfileProps {
   onLogin: (logout: boolean) => void;
 }
+
 const MainProfile: React.FC<ProfileProps> = ({ onLogin }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/mypage`); // 이동하고 싶은 경로
+  };
   return (
     <MainProfileWrapper>
       <LogoutBtn onClick={() => onLogin(false)}>로그아웃</LogoutBtn>
       <LetterWrapper>
-        <ProfileName>{profileData.nickname}</ProfileName>
+        <ProfileName onClick={() => handleClick()}>
+          {profileData.nickname}
+        </ProfileName>
         <ReadBookNum>{`지금까지 읽은 책 ${profileData.readnum.toLocaleString(
           "ko-KR"
         )} 권 📫`}</ReadBookNum>
@@ -54,7 +63,7 @@ const MainProfile: React.FC<ProfileProps> = ({ onLogin }) => {
           "ko-KR"
         )}`}</RankNum>
       </LetterWrapper>
-      <div>{profileData.profileImg}</div>
+      <div onClick={() => handleClick()}>{profileData.profileImg}</div>
     </MainProfileWrapper>
   );
 };

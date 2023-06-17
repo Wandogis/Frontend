@@ -1,9 +1,8 @@
 import React, { useState, useEffect, memo, useMemo } from "react";
 import styled from "styled-components";
-import { ReactComponent as Avatar } from "../../assets/svg/avatars.svg";
 import { ReactComponent as Fire } from "../../assets/svg/fire.svg";
 import { UilAngleDown } from "@iconscout/react-unicons";
-
+import UserImg from "../../assets/user.png";
 const RankingBoxWrapper = styled.div`
   position: relative;
   width: 30%;
@@ -85,7 +84,7 @@ const MoreRanking = styled.ul`
 interface Ranking {
   id: number;
   name: string;
-  img: JSX.Element;
+  img: string;
   fire: boolean;
   challenge: number;
 }
@@ -93,7 +92,7 @@ interface Ranking {
 const RankingItem: React.FC<{ ranking: Ranking }> = memo(({ ranking }) => (
   <>
     <RankingNum>{ranking.id}.</RankingNum>
-    {ranking.img}
+    <img src={ranking.img} alt="" width="24px" height="24px" />
     <RankingName>{ranking.name}</RankingName>
     <RankingFire>{ranking.fire && <Fire />}</RankingFire>
     <RankingChallenge>{ranking.challenge}개의 챌린지 완료</RankingChallenge>
@@ -111,70 +110,70 @@ const RankingSlide: React.FC = () => {
       {
         id: 1,
         name: "짱구1등",
-        img: <Avatar />,
+        img: UserImg,
         fire: true,
         challenge: 20,
       },
       {
         id: 2,
         name: "짱구2등",
-        img: <Avatar />,
+        img: UserImg,
         fire: true,
         challenge: 19,
       },
       {
         id: 3,
         name: "짱구3등",
-        img: <Avatar />,
+        img: UserImg,
         fire: true,
         challenge: 18,
       },
       {
         id: 4,
         name: "짱구4등",
-        img: <Avatar />,
+        img: UserImg,
         fire: true,
         challenge: 17,
       },
       {
         id: 5,
         name: "짱구5등",
-        img: <Avatar />,
+        img: UserImg,
         fire: true,
         challenge: 12,
       },
       {
         id: 6,
         name: "짱구6등",
-        img: <Avatar />,
+        img: UserImg,
         fire: true,
         challenge: 15,
       },
       {
         id: 7,
         name: "짱구7등",
-        img: <Avatar />,
+        img: UserImg,
         fire: true,
         challenge: 12,
       },
       {
         id: 8,
         name: "짱구8등",
-        img: <Avatar />,
+        img: UserImg,
         fire: true,
         challenge: 11,
       },
       {
         id: 9,
         name: "짱구9등",
-        img: <Avatar />,
+        img: UserImg,
         fire: true,
         challenge: 5,
       },
       {
         id: 10,
         name: "짱구10등",
-        img: <Avatar />,
+        img: UserImg,
         fire: true,
         challenge: 2,
       },
