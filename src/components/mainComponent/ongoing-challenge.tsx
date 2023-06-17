@@ -92,7 +92,9 @@ const OnChallenge: React.FC<OnchallengProps> = ({ Booklist, Ongoing }) => {
       </BtnWrapper>
       <BookListWrapper>
         {booklist.map((itm) => (
-          <BookImgBtn key={itm.id}>{itm.img}</BookImgBtn>
+          <BookImgBtn key={itm.id}>
+            <img src={itm.img} alt="" width="200px" height="250px" />
+          </BookImgBtn>
         ))}
       </BookListWrapper>
     </OnChallengeWrapper>

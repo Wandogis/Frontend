@@ -83,7 +83,9 @@ const ChallengeBookList: React.FC<ChallengeBookProps> = ({
       {challengeList.map((itm, idx) => {
         return (
           <Book>
-            <Img>{itm.img}</Img>
+            <Img>
+              <img src={itm.img} alt="" width="200px" height="250px" />
+            </Img>
             <Title>{itm.title}</Title>
             <DateWrapper>
               🚩
