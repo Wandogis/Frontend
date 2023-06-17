@@ -9,12 +9,13 @@ import Recommend from "./Results/recommended";
 import { onGoingBook } from "../../assets/json/main-challengeList";
 // Styles
 
-interface RecBtnProps {
+export interface RecBtnProps {
   disabled: boolean;
 }
 const RecommendWrapper = styled.div`
   width: 80%;
   margin-top: 1.5rem;
+  overflow: scroll;
 `;
 const RecommendContainer = styled.div`
   border-radius: 1rem;
@@ -89,7 +90,7 @@ const RecommendInput: React.FC = () => {
   const [age, setAge] = useState<number | null>(null);
   const [gender, setGender] = useState<string>("");
   const [writers, setWriters] = useState<string[]>([]);
-
+  const [click, setClick] = useState<boolean>(false);
   const submitRecommendations = () => {
     const recommendationData = {
       books,
@@ -127,7 +128,10 @@ const RecommendInput: React.FC = () => {
             <WriterInputs writers={writers} setWriters={setWriters} />
             <RecBtnWrapper>
               <RecommendBtn
-                onClick={submitRecommendations}
+                onClick={() => {
+                  submitRecommendations();
+                  setClick((prev) => !prev);
+                }}
                 disabled={isButtonDisabled(books, genre)}
               >
                 추천 받기
@@ -137,7 +141,7 @@ const RecommendInput: React.FC = () => {
           </div>
         </RecommendInputWrapper>
       </RecommendContainer>
-      <Recommend RecommendBooks={recommendBooks} />
+      <Recommend RecommendBooks={recommendBooks} click={click}/>
     </RecommendWrapper>
   );
 };

@@ -1,9 +1,11 @@
 import React, { useMemo, useState, memo } from "react";
-import { ReactComponent as Book1 } from "../../assets/svg/book1.svg";
-import { ReactComponent as Book2 } from "../../assets/svg/book2.svg";
-import { ReactComponent as Book3 } from "../../assets/svg/book3.svg";
+import Book1 from "../../assets/jpeg/Book1.jpeg";
+import Book2 from "../../assets/jpeg/Book2.jpeg";
+import Book3 from "../../assets/jpeg/Book3.jpeg";
+
 import { styled } from "styled-components";
 import { UilAngleRightB, UilAngleLeftB } from "@iconscout/react-unicons";
+import { useNavigate } from "react-router-dom";
 // import { UilEllipsisH } from '@iconscout/react-unicons'
 const BookWrapper = styled.div`
   width: 60%;
@@ -58,7 +60,7 @@ const LeftRightBtn = styled.button`
 interface Books {
   id: number;
   title: string;
-  img: JSX.Element;
+  img: string;
   genre: string;
   date: string;
   pages: number;
@@ -67,33 +69,18 @@ interface Books {
   summary: string;
 }
 
-const BookItem: React.FC<{ book: Books }> = memo(({ book }) => (
-  <>
-    <div>{book.img}</div>
-    <BookInfoWrapper>
-      <BookTitle>{book.title}</BookTitle>
-      <BookDetail>{book.genre}</BookDetail>
-      <BookDetail>{book.date}</BookDetail>
-      <BookDetail>{book.pages}</BookDetail>
-      <BookDetail>{book.weight}</BookDetail>
-      <BookDetail>{book.size}</BookDetail>
-      <BookSum>{book.summary}</BookSum>
-      <BtnWrapper>
-        <BookBtn>더 알아보기</BookBtn>
-      </BtnWrapper>
-    </BookInfoWrapper>
-  </>
-));
-
 const SlideBook: React.FC = () => {
   const [currentBooksIndex, setcurrentBooksIndex] = useState<number>(0);
-
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/bookDetail`); // 이동하고 싶은 경로
+  };
   const books: Books[] = useMemo(
     () => [
       {
         id: 1,
         title: "거인의 노트",
-        img: <Book1 />,
+        img: Book1,
         genre: "국내도서 > 자기계발 > 성공학/경력관리",
         date: "2023년 03월 08일",
         pages: 292,
@@ -104,8 +91,8 @@ const SlideBook: React.FC = () => {
       },
       {
         id: 2,
-        title: "거인의 노트",
-        img: <Book2 />,
+        title: "내가 너의 행복이 될게",
+        img: Book2,
         genre: "국내도서 > 자기계발 > 성공학/경력관리",
         date: "2023년 03월 08일",
         pages: 292,
@@ -116,8 +103,8 @@ const SlideBook: React.FC = () => {
       },
       {
         id: 3,
-        title: "거인의 노트",
-        img: <Book3 />,
+        title: "이끼숲",
+        img: Book3,
         genre: "국내도서 > 자기계발 > 성공학/경력관리",
         date: "2023년 03월 08일",
         pages: 292,
@@ -129,6 +116,26 @@ const SlideBook: React.FC = () => {
     ],
     []
   );
+
+  const BookItem: React.FC<{ book: Books }> = memo(({ book }) => (
+    <>
+      <div>
+        <img src={book.img} alt="" width="220px" height="300px" />
+      </div>
+      <BookInfoWrapper>
+        <BookTitle>{book.title}</BookTitle>
+        <BookDetail>{book.genre}</BookDetail>
+        <BookDetail>{book.date}</BookDetail>
+        <BookDetail>{book.pages}</BookDetail>
+        <BookDetail>{book.weight}</BookDetail>
+        <BookDetail>{book.size}</BookDetail>
+        <BookSum>{book.summary}</BookSum>
+        <BtnWrapper>
+          <BookBtn onClick={() => handleClick()}>더 알아보기</BookBtn>
+        </BtnWrapper>
+      </BookInfoWrapper>
+    </>
+  ));
 
   const onNextClick = (num: number) => {
     if (num === 1) {

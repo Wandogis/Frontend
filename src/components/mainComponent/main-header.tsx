@@ -3,6 +3,7 @@ import React, { useState, FormEvent } from "react";
 import styled from "styled-components";
 import { UilSearchAlt } from "@iconscout/react-unicons";
 import { useNavigate } from "react-router-dom";
+import getChallengeList from "../../api/search-data";
 
 const HeaderWrapper = styled.div`
   width: 100%;
@@ -63,9 +64,9 @@ const MainHeader: React.FC = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    console.log("Search query submitted:", searchData.query);
-    // 검색 api
+    getChallengeList(searchData.query);
   };
+
   const navigate = useNavigate();
 
   const handleClick = () => {
