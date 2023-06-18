@@ -10,9 +10,10 @@ const List = styled.div`
   margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  margin-left: 8rem;
   div {
     margin-right: 30px;
+    margin-bottom: 1rem;
     font-weight: 600;
     img {
       border-radius: 1rem;
