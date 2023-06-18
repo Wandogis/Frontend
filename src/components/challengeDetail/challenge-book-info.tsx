@@ -80,7 +80,7 @@ interface Book {
   summary: string;
 }
 
-interface CahllengeInfo {
+interface ChallengeInfo {
   startDate: string;
   endDate: string;
   participant: number;
@@ -95,7 +95,7 @@ const BookItem: React.FC<{ book: Book }> = ({book}) => (
   </BookInfoWrapper>
 );
 
-const ChallengeInfoItem: React.FC<{ info: CahllengeInfo }> = ({info}) => (
+const ChallengeInfoItem: React.FC<{ info: ChallengeInfo }> = ({info}) => (
   <ChallengeInfoWrapper>
     <ChallengeListDetail>
       기간 
@@ -134,7 +134,7 @@ const ProgressText = styled.span`
   margin-left: 10px;
 `;
 
-const ChallengeProgress: React.FC<{info: CahllengeInfo}> = ({info}) => {
+const ChallengeProgress: React.FC<{info: ChallengeInfo}> = ({info}) => {
   const challengeStartDate = new Date(info.startDate);
   const challengeEndDate = new Date(info.endDate);
   const currentDate = new Date();
@@ -152,30 +152,21 @@ const ChallengeProgress: React.FC<{info: CahllengeInfo}> = ({info}) => {
   );
 };
 
-const ChallengeBookInfo: React.FC = () => {
-  const book1:Book = {
-    title: "거인의 노트",
-    img: Book1,
-    genre: "국내도서 > 자기계발 > 성공학/경력관리",
-    summary:
-      "우리는 인생을 살면서 다양한 한계에 부딪힌다. 공부라는 외롭고 힘든 길에서 앞으로 나아가지 못하고 있다면, 아직 자신이 원하는 일을 찾지 못했다면, 10년 가까이 회사를 다녔지만 더 이상 어떻게 성과를 내야 할지 모르겠다면, 또는 아이를 키우며 반복되는 일상에 지쳐버렸거나 노년에 접어들어 은퇴를 하고 더 이상의 성장을 포기하게 되었다면, 당신은 이 한계를 넘어서길 포기한 채 그저 살던 대로 살아갈 것인가, 다시 한번 인생의 변화를 꾀할 것인가?",
-  }
+interface ChallengeBookInfoProps {
+  book: Book;
+  challenge: ChallengeInfo;
+}
 
-  const challenge1: CahllengeInfo = {
-    startDate: "2023-06-15",
-    endDate: "2023-06-29",
-    participant: 3,
-  }
-
+const ChallengeBookInfo: React.FC<ChallengeBookInfoProps> = ({book, challenge}) => {
   return (
     <ChallengeBookWrapper>
       <BookImageWrapper>
         <img src={Book1} alt="" width="200px"/>
       </BookImageWrapper>
       <BookInfoChallengeWrapper>
-        <BookItem book={book1} />
-        <ChallengeInfoItem info={challenge1} />
-        <ChallengeProgress info={challenge1} />
+        <BookItem book={book} />
+        <ChallengeInfoItem info={challenge} />
+        <ChallengeProgress info={challenge} />
       </BookInfoChallengeWrapper>
     </ChallengeBookWrapper>
   );
