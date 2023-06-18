@@ -1,8 +1,26 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Modal from "react-modal";
 import { OnBook } from "../../../assets/json/main-challengeList";
 import { RecBtnProps } from "../recommend-input";
 const RecommendedWrapper = styled.div``;
+const modalStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    backgroundColor: "#FBC252",
+    border: "none",
+    fontSize: "18px",
+    fontWeight: "600",
+    borderRadius: "1rem",
+    transform: "translate(-50%, -50%)",
+    width: "300px",
+    textAlign: "center",
+  },
+};
 const NoRecommend = styled.div`
   height: 300px;
   display: flex;
@@ -72,8 +90,16 @@ interface RecommendedProps {
 }
 const Recommended: React.FC<RecommendedProps> = ({ RecommendBooks, click }) => {
   const [books, setBooks] = useState(RecommendBooks);
+  const [modalIsOpen, setIsOpen] = useState(false);
+
   const rmRecommend = (id: number) => {
     setBooks(books.filter((book) => book.id !== id));
+  };
+  const openModal = () => {
+    setIsOpen(true);
+    setTimeout(() => {
+      setIsOpen(false); // close the modal after 2 seconds
+    }, 500);
   };
 
   return click && books.length > 0 ? (
@@ -87,8 +113,17 @@ const Recommended: React.FC<RecommendedProps> = ({ RecommendBooks, click }) => {
         ))}
       </RecommendList>
       <SaveBtnWrapper>
-        <SaveBtn disabled={books.length <= 0}>저장하기</SaveBtn>
+        <SaveBtn disabled={books.length <= 0} onClick={openModal}>
+          저장하기
+        </SaveBtn>
       </SaveBtnWrapper>
+      <Modal
+        isOpen={modalIsOpen}
+        style={modalStyles}
+        contentLabel="Save Confirmation Modal"
+      >
+        <p>저장되었습니다</p>
+      </Modal>
     </RecommendedWrapper>
   ) : (
     <NoRecommend>추천 책 목록이 없습니다.</NoRecommend>
