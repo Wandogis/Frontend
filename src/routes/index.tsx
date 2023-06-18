@@ -8,11 +8,13 @@ import Bookdetail from "../pages/bookdetail";
 import theme from "../assets/json/theme";
 import Mypage from "../pages/mypage";
 import SearchPage from "../pages/search";
+import StartPage from "../pages/StartPage";
 
 const Router: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <Routes>
+        <Route path="/*" element={<StartPage />}></Route>
         <Route path="/main" element={<Main />}></Route>
         <Route path="/recommend" element={<Recommend />}></Route>
         <Route path="/moreChallenge" element={<MoreChallenge />}></Route>
