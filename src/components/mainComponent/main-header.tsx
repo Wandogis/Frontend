@@ -105,15 +105,12 @@ const MainHeader: React.FC = () => {
             onChange={handleChange}
             required
           />
-          {isLoading ? (
-            <BeatLoader color={"FFB100"} loading={isLoading} size={12} />
-          ) : (
-            <SearchButton type="submit">
-              <UilSearchAlt />
-            </SearchButton>
-          )}
+          <SearchButton type="submit">
+            <UilSearchAlt />
+          </SearchButton>
         </InputBtnWrapper>
       </form>
+      <BeatLoader color={"FFB100"} loading={isLoading} size={12} />
     </HeaderWrapper>
   );
 };
