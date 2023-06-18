@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import Start from "../assets/start.png";
 import { useNavigate } from "react-router-dom";
-
+import Logo from "../assets/logo.png";
 // Define our keyframes
 const floatUp = keyframes`
   0% {
@@ -16,14 +16,14 @@ const floatUp = keyframes`
 // Create a styled component
 const FloatingElement = styled.div<{ start: boolean }>`
   width: 500px;
-  height: 250px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => props.theme.mainGreen};
+  background-color: #e1ecca;
   border-radius: 1rem;
   font-weight: 700;
-  color: white;
+  color: #222222;
   font-size: 30px;
   animation: ${floatUp} 2s ease-in-out forwards;
 `;
@@ -77,6 +77,9 @@ const StartPage: FC = () => {
     >
       <FloatingElement start={startFloat}>
         <div>
+          <Text className="logo">
+            <img src={Logo} alt="" width="100px" height="50px" />
+          </Text>
           <Text>완독이에 오신 것을 환영합니다.</Text>
           <Text>책 추천과 챌린지를 한번에</Text>
           <Text>
