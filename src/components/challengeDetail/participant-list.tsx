@@ -7,7 +7,7 @@ const ChallengeParticipantWrapper = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   margin-left: 3rem;
   padding: 2rem;
   background-color: white;
@@ -76,7 +76,7 @@ const ParticipantList: React.FC<ParticipantProps> = ({ totalPage, participantDat
           <ParticipantItemWrapper key={participant.id}>
             {participant.profileImg}
             <ParticipantInfoWrapper>
-              <ParticipantNickname>{participant.nickname} 님</ParticipantNickname>
+              <ParticipantNickname>{participant.nickname} 님 달성률</ParticipantNickname>
               <ProgressWrapper>
                 <ProgressBar percentage={achievementRate} />
                 <ProgressText>{Math.round(achievementRate)}%</ProgressText>

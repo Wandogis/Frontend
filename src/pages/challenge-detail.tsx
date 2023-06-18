@@ -2,10 +2,12 @@ import React from 'react';
 import styled from "styled-components";
 import Book1 from "../assets/jpeg/Book1.jpeg"
 import { ParticipantDataList } from "../assets/json/participant-list";
+import { ChallengePostList } from "../assets/json/challenge-post-list";
 import MainHeader from "../components/mainComponent/main-header";
 import MainMenuBar from "../components/mainComponent/main-menu-bar";
 import ChallengeBookInfo from "../components/challengeDetail/challenge-book-info";
 import ParticipantList from "../components/challengeDetail/participant-list";
+import PostList from "../components/challengeDetail/post-list";
 import HorizonLine from "../assets/json/horizonline"
 
 const Title = styled.div`
@@ -39,8 +41,16 @@ interface ParticipantData {
   readPage: number;
 }
 
+interface ChallengePost {
+  id: number;
+  author: string;
+  date: string;
+  content: string;
+}
+
 const ChallengeDetail: React.FC = () => {
   const [participants, setParticipants] = React.useState<ParticipantData[]>(ParticipantDataList);
+  const [challengePosts, setChallengePosts] = React.useState<ChallengePost[]>(ChallengePostList);
 
   const book1:Book = {
     title: "거인의 노트",
@@ -68,6 +78,7 @@ const ChallengeDetail: React.FC = () => {
       </div>
       <Title>챌린지 게시판</Title>
       <HorizonLine borderBottom="2px solid #575757" marginLeft="50px"/>
+      <PostList ChallengePostList={challengePosts} />
     </div>
   );
 };

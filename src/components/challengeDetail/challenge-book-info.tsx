@@ -9,7 +9,7 @@ const ChallengeBookWrapper = styled.div`
   display: flex;
   flex-direction: row;
   border-radius: 1rem;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   margin-left: 3rem;
   padding: 2rem;
   background-color: white;
