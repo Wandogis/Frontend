@@ -135,13 +135,33 @@ const ProgressText = styled.span`
 `;
 
 const ChallengeProgress: React.FC<{info: ChallengeInfo}> = ({info}) => {
+  /*const challengeStartDate = new Date(info.startDate);
+  const challengeEndDate = new Date(info.endDate);
+  challengeEndDate.setDate(challengeEndDate.getDate() + 1);
+  
+  const currentDate = new Date();
+  currentDate.setHours(0,0,0,0);
+  
+  const totalDays = Math.floor((challengeEndDate.getTime() - challengeStartDate.getTime()) / (1000 * 60 * 60 * 24))+1;
+  const elapsedDays = Math.floor((currentDate.getTime() - challengeStartDate.getTime()) / (1000 * 60 * 60 * 24))+1;
+  
+  const progress = (elapsedDays / totalDays) * 100;*/
+
   const challengeStartDate = new Date(info.startDate);
   const challengeEndDate = new Date(info.endDate);
   const currentDate = new Date();
-  
-  const totalDays = Math.floor((challengeEndDate.getTime() - challengeStartDate.getTime()) / (1000 * 60 * 60 * 24));
-  const elapsedDays = Math.floor((currentDate.getTime() - challengeStartDate.getTime()) / (1000 * 60 * 60 * 24));
-  
+
+  const totalDays = ((challengeEndDate.getTime() - challengeStartDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+  let elapsedDays;
+
+  if (currentDate < challengeStartDate) {
+    elapsedDays = 0;
+  } else if (currentDate > challengeEndDate) {
+    elapsedDays = totalDays;
+  } else {
+    elapsedDays = ((currentDate.getTime() - challengeStartDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+  }
+
   const progress = (elapsedDays / totalDays) * 100;
   
   return (
