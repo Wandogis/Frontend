@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { challengeBook } from "../../assets/json/challenge-list";
 const Title = styled.div`
@@ -78,13 +79,21 @@ const ChallengeBookList: React.FC<ChallengeBookProps> = ({
   challengeList,
   btnSelect,
 }) => {
+  const navigate = useNavigate(); 
+
+  const handleTitleClick = () => {
+    navigate("/challengedetail");
+  };
+
   return (
     <BookList>
       {challengeList.map((itm, idx) => {
         return (
           <Book>
-            <Img>{itm.img}</Img>
-            <Title>{itm.title}</Title>
+            <Img>
+              <img src={itm.img} alt="" width="200px" height="250px" />
+            </Img>
+            <Title onClick={handleTitleClick}>{itm.title}</Title>
             <DateWrapper>
               🚩
               <Date>{itm.date}</Date>

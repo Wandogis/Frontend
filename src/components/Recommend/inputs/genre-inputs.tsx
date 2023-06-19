@@ -134,7 +134,7 @@ const GenreInputs: React.FC<GenreProps> = ({ genre, setGenre }) => {
       </MenuInputWrapper>
       <MenuList>
         {genre.map((itm, idx) => (
-          <ItmBtn>
+          <ItmBtn key={idx}>
             {itm}
             <button onClick={() => removeGenre(itm)}>
               <UilMultiply />

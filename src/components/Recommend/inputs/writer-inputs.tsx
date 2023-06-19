@@ -6,6 +6,7 @@ import { styled } from "styled-components";
 export const WriterBtn = styled(ItmBtn)`
   background-color: ${(props) => props.theme.mainYellow};
   margin-top: 0;
+  margin-bottom: 5px;
 `;
 
 export const PlusBtn = styled.button`

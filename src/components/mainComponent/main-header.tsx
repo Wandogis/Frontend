@@ -1,8 +1,11 @@
 import { ReactComponent as Logo } from "../../assets/svg/main-logo.svg";
-import React, { useState, FormEvent } from "react";
+import React, { useState, FormEvent, useContext } from "react";
 import styled from "styled-components";
 import { UilSearchAlt } from "@iconscout/react-unicons";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
+import getChallengeList from "../../api/search-data";
+import { BeatLoader } from "react-spinners";
+import { LoadingContext } from "../loading-context";
 
 const HeaderWrapper = styled.div`
   width: 100%;
@@ -53,20 +56,31 @@ interface SearchData {
   query: string;
 }
 
+interface SearchResultData {
+  img: string;
+  title: string;
+  isbn: string;
+}
+
 const MainHeader: React.FC = () => {
+  const { setIsLoading, isLoading } = useContext(LoadingContext);
+
   const [searchData, setSearchData] = useState<SearchData>({ query: "" });
+  const [resultData, setResultData] = useState<SearchResultData[] | null>(null);
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setSearchData({ ...searchData, [name]: value });
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log("Search query submitted:", searchData.query);
-    // 검색 api
+    setIsLoading(true);
+    const result = await getChallengeList(searchData.query);
+    setResultData(result.item);
+    setIsLoading(false);
   };
-  const navigate = useNavigate();
 
   const handleClick = () => {
     navigate(`/main`, { replace: true }); // 이동하고 싶은 경로
@@ -74,6 +88,9 @@ const MainHeader: React.FC = () => {
 
   return (
     <HeaderWrapper>
+      {resultData && (
+        <Navigate to="/search" state={{ searchData: resultData }} replace />
+      )}
       <LogoWrapper onClick={handleClick}>
         <Logo />
       </LogoWrapper>
@@ -93,6 +110,7 @@ const MainHeader: React.FC = () => {
           </SearchButton>
         </InputBtnWrapper>
       </form>
+      <BeatLoader color={"FFB100"} loading={isLoading} size={12} />
     </HeaderWrapper>
   );
 };
