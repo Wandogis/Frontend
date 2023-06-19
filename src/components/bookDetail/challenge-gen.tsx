@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 import { styled } from "styled-components";
 import GenerateModal from "./challenge-gen-modal";
 
-const ChallengeGen: React.FC = () => {
-  const ChallengeWrapper = styled.div`
+const ChallengeWrapper = styled.div`
   width: 250px;
   height: 170px;
   display: flex;
@@ -27,15 +26,33 @@ const GenerateButton = styled.button`
   cursor: pointer;
 `;
 
-const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+interface ChallengeinfoData {
+  id: number;
+  challengeTitle: string;
+  startDate: string;
+  endDate: string;
+  participant: number;
+}
 
-const openModal = () => {
-  setIsOpenModal(true);
-};
+interface ChallengeProps {
+  challenges: ChallengeinfoData[];
+  setChallenges: Dispatch<SetStateAction<ChallengeinfoData[]>>;
+}
 
-const closeModal = () => {
-  setIsOpenModal(false);
-};
+const ChallengeGen: React.FC<ChallengeProps> = ({ challenges, setChallenges }) => {
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+
+  const openModal = () => {
+    setIsOpenModal(true);
+  };
+
+  const closeModal = () => {
+    setIsOpenModal(false);
+  };
+
+  const addChallenge = (newChallenge: ChallengeinfoData) => {
+    setChallenges([...challenges, newChallenge]);
+  };
 
   return (
     <ChallengeWrapper>
@@ -45,6 +62,7 @@ const closeModal = () => {
       {isOpenModal && (
         <GenerateModal
           closeModal={closeModal}
+          addChallenge={addChallenge}
         />
       )}
     </ChallengeWrapper>

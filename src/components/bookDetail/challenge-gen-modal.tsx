@@ -3,7 +3,16 @@ import { styled } from 'styled-components';
 
 type GenerateProps = {
   closeModal: () => void;
+  addChallenge: (challenge: ChallengeinfoData) => void;
 };
+
+interface ChallengeinfoData {
+  id: number;
+  challengeTitle: string;
+  startDate: string;
+  endDate: string;
+  participant: number;
+}
 
 const ModalWrap = styled.div`
   position: fixed;
@@ -84,17 +93,20 @@ const CancelButton = styled.button`
   color: ${(props) => props.theme.mainYellow};
 `;
 
-const GenerateModal: React.FC<GenerateProps> = ({ closeModal }) => {
-  const [title, setTitle] = useState<string>("");;
-  const [startDate, setStartDate] = useState<string>("");;
-  const [endDate, setEndDate] = useState<string>("");;
+const GenerateModal: React.FC<GenerateProps> = ({ closeModal, addChallenge }) => {
+  const [title, setTitle] = useState<string>("");
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
 
   const submitChallenge = () => {
-    const ChallengeData = {
-      title,
+    const newChallenge = {
+      id: Math.floor(Math.random() * 1000),
+      challengeTitle: title,
       startDate,
-      endDate
+      endDate,
+      participant: 0
     };
+    addChallenge(newChallenge);
     closeModal();
   };
 

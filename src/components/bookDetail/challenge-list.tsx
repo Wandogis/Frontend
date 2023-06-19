@@ -12,9 +12,8 @@ interface ChallengeData {
   participant: number;
 }
 
-const ChallengeList: React.FC = () => {
   const ListContainer = styled.div`
-    display: flex;
+  display: flex;
     flex-direction: row;
   `;
 
@@ -65,64 +64,66 @@ const ChallengeList: React.FC = () => {
     font-weight: 600;
   `;
 
-  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
-  const [selectedChallengeId, setSelectedChallengeId] = useState<number | null>(
-    null
-  );
-  const [challenges, setChallenges] =
-    useState<ChallengeData[]>(ingChallengeList);
-
-  const openModal = (id: number) => {
-    setIsOpenModal(true);
-    setSelectedChallengeId(id);
-  };
-
-  const closeModal = () => {
-    setIsOpenModal(false);
-    setSelectedChallengeId(null);
-  };
-
-  const submitApply = (id: number) => {
-    setChallenges(
-      challenges.map((challenge) =>
-        challenge.id === id
-          ? { ...challenge, participant: challenge.participant + 1 }
-          : challenge
-      )
+  interface ChallengeProps {
+    challenges: ChallengeData[];
+    setChallenges: React.Dispatch<React.SetStateAction<ChallengeData[]>>;
+  }
+  
+  const ChallengeList: React.FC<ChallengeProps> = ({ challenges, setChallenges }) => {
+    const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+    const [selectedChallengeId, setSelectedChallengeId] = useState<number | null>(null);
+  
+    const openModal = (id: number) => {
+      setIsOpenModal(true);
+      setSelectedChallengeId(id);
+    };
+  
+    const closeModal = () => {
+      setIsOpenModal(false);
+      setSelectedChallengeId(null);
+    };
+  
+    const submitApply = (id: number) => {
+      setChallenges(
+        challenges.map((challenge) =>
+          challenge.id === id
+            ? { ...challenge, participant: challenge.participant + 1 }
+            : challenge
+        )
+      );
+      closeModal();
+    };
+  
+    return (
+      <ListContainer>
+        {challenges.map((challenge: ChallengeData) => (
+          <ChallengeListWrapper key={challenge.id}>
+            <ChallengeTitle>{challenge.challengeTitle}</ChallengeTitle>
+            <HorizonLine borderBottom="1px solid #575757" />
+            <ChallengeListDetail>
+              진행 기간{" "}
+              <RightAlignText>
+                {challenge.startDate}-{challenge.endDate}
+              </RightAlignText>
+            </ChallengeListDetail>
+            <ChallengeListDetail>
+              신청 인원 <RightAlignText>{challenge.participant}명</RightAlignText>
+            </ChallengeListDetail>
+            <ButtonWrapper>
+              <ApplyButton onClick={() => openModal(challenge.id)}>
+                챌린지 신청하기
+              </ApplyButton>
+              {isOpenModal && selectedChallengeId === challenge.id && (
+                <ApplyModal
+                  id={challenge.id}
+                  closeModal={closeModal}
+                  submitApply={submitApply}
+                />
+              )}
+            </ButtonWrapper>
+          </ChallengeListWrapper>
+        ))}
+      </ListContainer>
     );
-    closeModal();
   };
-
-  return (
-    <ListContainer>
-      {challenges.map((challenge: ChallengeData) => (
-        <ChallengeListWrapper key={challenge.id}>
-          <ChallengeTitle>{challenge.challengeTitle}</ChallengeTitle>
-          <HorizonLine borderBottom="1px solid #575757" />
-          <ChallengeListDetail>
-            진행 기간{" "}
-            <RightAlignText>
-              {challenge.startDate}-{challenge.endDate}
-            </RightAlignText>
-          </ChallengeListDetail>
-          <ChallengeListDetail>
-            신청 인원 <RightAlignText>{challenge.participant}명</RightAlignText>
-          </ChallengeListDetail>
-          <ButtonWrapper>
-            <ApplyButton onClick={() => openModal(challenge.id)}>
-              챌린지 신청하기
-            </ApplyButton>
-            {isOpenModal && selectedChallengeId === challenge.id && (
-              <ApplyModal
-                id={challenge.id}
-                closeModal={closeModal}
-                submitApply={submitApply}
-              />
-            )}
-          </ButtonWrapper>
-        </ChallengeListWrapper>
-      ))}
-    </ListContainer>
-  );
-};
-export default ChallengeList;
+  export default ChallengeList;
