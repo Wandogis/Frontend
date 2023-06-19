@@ -5,7 +5,7 @@ import GenderInputs from "./inputs/gender-inputs";
 import WriterInputs from "./inputs/writer-inputs";
 import BookInputs from "./inputs/books-inputs";
 import { UilMessage } from "@iconscout/react-unicons";
-import Recommended from "./results/recommended";
+import Recommend from "./Results/recommended";
 import { onGoingBook } from "../../assets/json/main-challengeList";
 // Styles
 
@@ -141,7 +141,7 @@ const RecommendInput: React.FC = () => {
           </div>
         </RecommendInputWrapper>
       </RecommendContainer>
-      <Recommended RecommendBooks={recommendBooks} click={click} />
+      <Recommend RecommendBooks={recommendBooks} click={click}/>
     </RecommendWrapper>
   );
 };
