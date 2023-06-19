@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import HorizonLine from "../../assets/json/horizonline";
-import { ingChallengeList } from "../../assets/json/ing-challenge-list";
 import ApplyModal from "./challenge-apply-modal";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ChallengeData {
   id: number;
@@ -92,6 +93,9 @@ interface ChallengeData {
         )
       );
       closeModal();
+      toast.success("챌린지 참여가 완료되었습니다!", {
+        position: toast.POSITION.TOP_CENTER
+      });
     };
   
     return (
@@ -123,6 +127,7 @@ interface ChallengeData {
             </ButtonWrapper>
           </ChallengeListWrapper>
         ))}
+        <ToastContainer autoClose={1000}/>
       </ListContainer>
     );
   };
